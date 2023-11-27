@@ -1,8 +1,8 @@
 package database;
 
 public class DatabaseConnectionFactory {
-    private static final String SCHEMA = "library";
-    private static final String TEST_SCHEMA = "test_library";
+    private static final String SCHEMA = "test_library";
+    private static final String TEST_SCHEMA = "test";
 
     public static JDBConnectionWrapper getConnectionWrapper(boolean test){
         if(test){

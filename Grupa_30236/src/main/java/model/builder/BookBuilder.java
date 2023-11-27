@@ -34,6 +34,14 @@ public class BookBuilder {
         return this;
     }
 
+    public BookBuilder setPret(int pret){
+        book.setPret(pret);
+        return this;
+    }
+    public BookBuilder setCantitate(int cantitate){
+        book.setCantitate(cantitate);
+        return this;
+    }
     public Book build()
     {
         return book;

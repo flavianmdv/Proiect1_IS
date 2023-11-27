@@ -9,9 +9,9 @@ import java.util.List;
 
 public class BookServiceImpl implements BookService{
 
-    final BookRepository bookRepository;
+    BookRepository bookRepository = null;
 
-    public BookServiceImpl(BookRepository bookRepository){
+    public BookServiceImpl(){
         this.bookRepository = bookRepository;
     }
 
@@ -29,6 +29,13 @@ public class BookServiceImpl implements BookService{
     public boolean save(Book book) {
         return bookRepository.save(book);
     }
+
+    @Override
+    public void update(Long id, int cantitate) {
+         this.bookRepository.update(id, cantitate);
+
+    }
+
 
     @Override
     public int getAgeOfBook(Long id) {

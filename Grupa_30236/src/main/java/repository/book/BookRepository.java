@@ -14,4 +14,6 @@ public interface BookRepository {
 
     void removeAll();
 
+    void update(Long id, int cantitate);
+
 }

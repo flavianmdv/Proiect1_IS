@@ -78,7 +78,7 @@ public class BookRepositoryMySQL implements BookRepository{
 
     @Override
     public boolean save(Book book) {
-        String sql = "INSERT INTO book VALUES(null, ?, ?, ?);";
+        String sql = "INSERT INTO book VALUES(null, ?, ?, ?, ?, ?);";
 
         String newSql = "INSERT INTO book VALUES(null, \'" + book.getAuthor() +"\', \'"+ book.getTitle()+"\', null );";
 
@@ -91,7 +91,10 @@ public class BookRepositoryMySQL implements BookRepository{
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, book.getAuthor());
             preparedStatement.setString(2, book.getTitle());
-            preparedStatement.setDate(3, java.sql.Date.valueOf(book.getPublishedDate()));
+            preparedStatement.setDate(3, Date.valueOf(book.getPublishedDate()));
+            preparedStatement.setInt(4, book.getCantitate());
+            preparedStatement.setInt(5, book.getPret());
+
 
             int rowsInserted = preparedStatement.executeUpdate();
 
@@ -116,12 +119,30 @@ public class BookRepositoryMySQL implements BookRepository{
         }
     }
 
+    @Override
+    public void update(Long id, int cantitate) {
+        String sql = "UPDATE book SET cantitate = cantitate + ? WHERE id = ?";
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setInt(1, cantitate);
+            preparedStatement.setLong(2, id);
+
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     private Book getBookFromResultSet(ResultSet resultSet) throws SQLException{
         return new BookBuilder()
                 .setId(resultSet.getLong("id"))
                 .setTitle(resultSet.getString("title"))
                 .setAuthor(resultSet.getString("author"))
-                .setPublishedDate(new java.sql.Date(resultSet.getDate("publishedDate").getTime()).toLocalDate())
+                .setPublishedDate(new Date(resultSet.getDate("publishedDate").getTime()).toLocalDate())
+                .setCantitate(resultSet.getInt("cantitate"))
+                .setPret(resultSet.getInt("pret"))
                 .build();
     }
+
+
 }
