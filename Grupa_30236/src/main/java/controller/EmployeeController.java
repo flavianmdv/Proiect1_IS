@@ -11,6 +11,7 @@ import repository.book.BookRepositoryMySQL;
 import repository.book.Cache;
 import view.AddBookView;
 import view.EmployeeView;
+import view.UpdateBookView;
 
 import java.util.List;
 import java.util.function.Consumer;
@@ -48,6 +49,9 @@ public class EmployeeController {
 
     private void handleEditButton(ActionEvent event) {
         // Implement edit operation
+        System.out.print("asdad");
+        UpdateBookView updateBookView = new UpdateBookView();
+        UpdateBookController updateBookController = new UpdateBookController(updateBookView);
 //        showAlert("Edit Employee", "Edit operation not implemented yet.");
     }
 
