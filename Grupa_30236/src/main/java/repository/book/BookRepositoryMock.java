@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+
 public class BookRepositoryMock implements BookRepository{
 
     private List<Book> books;
@@ -34,5 +35,11 @@ public class BookRepositoryMock implements BookRepository{
     @Override
     public void removeAll() {
         books.clear();
+    }
+
+    @Override
+    public void update(Long id, int cantitate) {
+        Object pass;
+
     }
 }
