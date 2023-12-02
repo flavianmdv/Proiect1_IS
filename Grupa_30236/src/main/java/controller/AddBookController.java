@@ -34,7 +34,6 @@ public class AddBookController {
 
     private void handleAddButton(ActionEvent event) {
         // Collect values from the view
-        System.out.print("pula");
         String author = addBookView.getAuthorTextFieldText();
         String title = addBookView.getTitleTextFieldText();
         LocalDate publishedDate = addBookView.getPublishedDatePickerValue();
