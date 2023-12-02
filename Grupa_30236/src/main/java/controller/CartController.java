@@ -19,7 +19,6 @@ public class CartController {
 
 
     private void handleBuyButton(ActionEvent event){
-
         cartView.getStage().close();
     }
     private void handleCloseButton(ActionEvent event){

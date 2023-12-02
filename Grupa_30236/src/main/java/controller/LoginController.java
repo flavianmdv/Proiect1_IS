@@ -13,6 +13,7 @@ import repository.book.BookRepositoryMySQL;
 import repository.book.Cache;
 import service.user.AuthenticationService;
 import view.CustomerView;
+import view.EmployeeView;
 import view.LoginView;
 
 import java.util.EventListener;
@@ -53,6 +54,8 @@ public class LoginController {
                 );
                 if (user_role.equals("customer")) {
                     CustomerController customerController = new CustomerController(new CustomerView(loginView.getStage()));
+                } else if (user_role.equals("employee")) {
+                    EmployeeController employeeController = new EmployeeController(new EmployeeView(loginView.getStage()));
 
                 }
             }

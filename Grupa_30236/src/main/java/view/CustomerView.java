@@ -1,7 +1,5 @@
 package view;
 
-import database.DatabaseConnectionFactory;
-import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -16,17 +14,12 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javafx.util.Callback;
 import model.Book;
-import repository.book.BookRepository;
-import repository.book.BookRepositoryCacheDecorator;
-import repository.book.BookRepositoryMySQL;
-import repository.book.Cache;
+
 
 import java.time.LocalDate;
 import java.util.ArrayList;

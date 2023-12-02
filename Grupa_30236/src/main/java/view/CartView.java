@@ -120,6 +120,7 @@ public class CartView {
 
         }
         buyButton.setOnAction(buyButtonListener);
+        this.cart_list.clear();
     }
     public Stage getStage() {
         return cartStage;
