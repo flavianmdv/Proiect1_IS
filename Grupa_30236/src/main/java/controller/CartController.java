@@ -1,6 +1,5 @@
 package controller;
 
-//import model.CartRepository; // Import your cart repository class here
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import view.CartView;

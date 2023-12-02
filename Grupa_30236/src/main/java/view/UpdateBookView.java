@@ -23,7 +23,7 @@ public class UpdateBookView {
     private DatePicker publishedDatePicker;
     private TextField quantityTextField;
     private TextField priceTextField;
-    private TextField extraTextField;  // Additional text box
+    private TextField extraTextField;
     private Button updateButton;
 
     private Stage primaryStage;
@@ -39,7 +39,7 @@ public class UpdateBookView {
         publishedDatePicker = new DatePicker();
         quantityTextField = new TextField();
         priceTextField = new TextField();
-        extraTextField = new TextField();  // Additional text box
+        extraTextField = new TextField();
         updateButton = new Button("Update Book");
 
         gridPane.add(new Label("ID:"), 0, 0);
@@ -57,7 +57,7 @@ public class UpdateBookView {
 
         gridPane.add(updateButton, 0, 7, 2, 1);
 
-        Scene scene = new Scene(gridPane, 400, 350);  // Increased height to accommodate the additional text box
+        Scene scene = new Scene(gridPane, 400, 350);  x
         primaryStage.setScene(scene);
         primaryStage.setTitle("Update Book");
         primaryStage.show();
@@ -71,16 +71,13 @@ public class UpdateBookView {
         gridPane.setPadding(new Insets(25, 25, 25, 25));
     }
 
-    public void show() {
-    }
+
 
     public void close() {
         primaryStage.close();
     }
 
-    public void setBookToUpdate(/* Pass a Book instance for initialization */) {
-        // Initialize text fields based on the provided Book instance
-    }
+
 
     public String getIdTextFieldText() {
         return idTextField.getText();
@@ -104,10 +101,6 @@ public class UpdateBookView {
 
     public int getPriceTextFieldValue() {
         return Integer.parseInt(priceTextField.getText());
-    }
-
-    public String getExtraTextFieldText() {
-        return extraTextField.getText();
     }
 
     public void setUpdateButtonHandler(EventHandler<ActionEvent> updateButtonHandler) {

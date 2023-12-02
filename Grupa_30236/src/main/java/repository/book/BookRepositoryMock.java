@@ -48,4 +48,9 @@ public class BookRepositoryMock implements BookRepository{
     public void updateBook(Long id, String titlu, String autor, LocalDate publishedDate, int cantitate, int pret) {
         Object pass;
     }
+
+    @Override
+    public void deleteById(Long id) {
+        Object pass;
+    }
 }

@@ -18,4 +18,6 @@ public interface BookRepository {
     void update(Long id, int cantitate);
     void updateBook(Long id, String titlu, String autor, LocalDate publishedDate, int cantitate, int pret);
 
+    void deleteById(Long id);
+
 }

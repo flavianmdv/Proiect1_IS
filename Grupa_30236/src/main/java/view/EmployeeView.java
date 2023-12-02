@@ -9,8 +9,6 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -58,7 +56,6 @@ public class EmployeeView {
         initializeButtons(gridPane);
         initializeBooksTable(gridPane);
 
-        // Initialize the book repository
         this.bookRepository = new BookRepositoryCacheDecorator(
                 new BookRepositoryMySQL(DatabaseConnectionFactory.getConnectionWrapper(true).getConnection()),
                 new Cache<>()

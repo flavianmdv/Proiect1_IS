@@ -29,18 +29,15 @@ public class AddBookController {
                 new Cache<>()
         );
 
-        // Set up event handlers
     }
 
     private void handleAddButton(ActionEvent event) {
-        // Collect values from the view
         String author = addBookView.getAuthorTextFieldText();
         String title = addBookView.getTitleTextFieldText();
         LocalDate publishedDate = addBookView.getPublishedDatePickerValue();
         int quantity = addBookView.getQuantityTextFieldValue();
         int price = addBookView.getPriceTextFieldValue();
 
-        // Create a Book object
         Book book = new BookBuilder()
                 .setTitle(title)
                 .setAuthor(author)
@@ -49,10 +46,8 @@ public class AddBookController {
                 .setPret(price)
                 .build();
 
-        // Save the book
         bookRepository.save(book);
 
-        // Close the view
         addBookView.close();
     }
 

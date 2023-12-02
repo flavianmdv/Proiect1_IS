@@ -9,9 +9,7 @@ import repository.book.BookRepository;
 import repository.book.BookRepositoryCacheDecorator;
 import repository.book.BookRepositoryMySQL;
 import repository.book.Cache;
-import view.AddBookView;
-import view.EmployeeView;
-import view.UpdateBookView;
+import view.*;
 
 import java.util.List;
 import java.util.function.Consumer;
@@ -49,21 +47,20 @@ public class EmployeeController {
 
     private void handleEditButton(ActionEvent event) {
         // Implement edit operation
-        System.out.print("asdad");
         UpdateBookView updateBookView = new UpdateBookView();
         UpdateBookController updateBookController = new UpdateBookController(updateBookView);
 //        showAlert("Edit Employee", "Edit operation not implemented yet.");
     }
 
     private void handleDeleteButton(ActionEvent event) {
-        // Implement delete operation
-//        showAlert("Delete Employee", "Delete operation not implemented yet.");
+        DeleteBookView deleteBookView = new DeleteBookView();
+        DeleteBookController deleteBookController = new DeleteBookController(deleteBookView);
     }
 
 
     private void handleSellBookButton(ActionEvent event) {
-        // Implement logic for selling a book
-//        showAlert("Sell Book", "Sell Book operation not implemented yet.");
+        SellView sellView = new SellView();
+        SellController sellController = new SellController(sellView);
     }
 
     private void handleViewAllBooksButton(ActionEvent event) {
