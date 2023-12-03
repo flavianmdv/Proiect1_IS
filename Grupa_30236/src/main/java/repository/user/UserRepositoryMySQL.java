@@ -1,23 +1,21 @@
 package repository.user;
+
 import model.User;
 import model.builder.UserBuilder;
 import model.validator.Notification;
 import repository.security.RightsRolesRepository;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 import static database.Constants.Tables.USER;
-import static java.util.Collections.singletonList;
 
 public class UserRepositoryMySQL implements UserRepository {
 
     private final Connection connection;
     private final RightsRolesRepository rightsRolesRepository;
+
 
 
     public UserRepositoryMySQL(Connection connection, RightsRolesRepository rightsRolesRepository) {
@@ -27,8 +25,31 @@ public class UserRepositoryMySQL implements UserRepository {
 
     @Override
     public List<User> findAll() {
-        return null;
+        List<User> users = new ArrayList<>();
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(
+                "SELECT u.* FROM user u " +
+                        "JOIN user_role ur ON u.id = ur.user_id " +
+                        "WHERE ur.role_id = 2"
+        )) {
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    Long id = resultSet.getLong("id");
+                    String username = resultSet.getString("username");
+                    String password = resultSet.getString("password");
+
+                    User user = new UserBuilder().setId(id).setUsername(username).setPassword(password).build();
+                    users.add(user);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return users;
     }
+
 
     // SQL Injection Attacks should not work after fixing functions
     // Be careful that the last character in sql injection payload is an empty space
@@ -101,6 +122,79 @@ public class UserRepositoryMySQL implements UserRepository {
             e.printStackTrace();
         }
     }
+
+    @Override
+    public void deleteById(Long employeeId) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM user WHERE id = ?")) {
+            preparedStatement.setLong(1, employeeId);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+//    public void updateEmployee(Long id, String username, String password) {
+//        String sql = "UPDATE user " +
+//                "SET " +
+//                "    username = ?, " +
+//                "    password = ? " +
+//                "WHERE " +
+//                "    id = ?";
+//
+//        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+//            preparedStatement.setString(1, username);
+//            preparedStatement.setString(2, password);
+//            preparedStatement.setLong(3, id);
+//
+//            preparedStatement.executeUpdate();
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//    }
+
+    public void updateEmployee(Long id, String username, String password, Long roleId) {
+        String updateUserSql = "UPDATE user " +
+                "SET " +
+                "    username = ?, " +
+                "    password = ? " +
+                "WHERE " +
+                "    id = ?";
+
+        String updateUserRoleSql = "UPDATE user_role " +
+                "SET " +
+                "    role_id = ? " +
+                "WHERE " +
+                "    user_id = ?";
+
+        try {
+            connection.setAutoCommit(false); // Start the transaction
+
+            try (PreparedStatement updateUserStatement = connection.prepareStatement(updateUserSql);
+                 PreparedStatement updateUserRoleStatement = connection.prepareStatement(updateUserRoleSql)) {
+
+                // Update user table
+                updateUserStatement.setString(1, username);
+                updateUserStatement.setString(2, password);
+                updateUserStatement.setLong(3, id);
+                updateUserStatement.executeUpdate();
+
+                // Update user_role table
+                updateUserRoleStatement.setLong(1, roleId);
+                updateUserRoleStatement.setLong(2, id);
+                updateUserRoleStatement.executeUpdate();
+
+                connection.commit(); // Commit the transaction
+            } catch (SQLException e) {
+                connection.rollback(); // Rollback the transaction in case of an exception
+                e.printStackTrace();
+            } finally {
+                connection.setAutoCommit(true); // Reset auto-commit to true
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     @Override
     public boolean existsByUsername(String email) {

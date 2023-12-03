@@ -15,5 +15,8 @@ public interface UserRepository {
 
     void removeAll();
 
+    void deleteById(Long id);
+
+    void updateEmployee(Long id, String username, String password, Long roleId);
     boolean existsByUsername(String username);
 }
