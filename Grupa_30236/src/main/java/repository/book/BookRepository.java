@@ -2,6 +2,7 @@ package repository.book;
 
 import model.Book;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,5 +16,8 @@ public interface BookRepository {
     void removeAll();
 
     void update(Long id, int cantitate);
+    void updateBook(Long id, String titlu, String autor, LocalDate publishedDate, int cantitate, int pret);
+
+    void deleteById(Long id);
 
 }

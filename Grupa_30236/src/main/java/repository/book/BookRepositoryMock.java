@@ -2,6 +2,7 @@ package repository.book;
 
 import model.Book;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -41,5 +42,15 @@ public class BookRepositoryMock implements BookRepository{
     public void update(Long id, int cantitate) {
         Object pass;
 
+    }
+
+    @Override
+    public void updateBook(Long id, String titlu, String autor, LocalDate publishedDate, int cantitate, int pret) {
+        Object pass;
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        Object pass;
     }
 }

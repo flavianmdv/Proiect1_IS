@@ -4,6 +4,7 @@ import model.Book;
 import model.builder.BookBuilder;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -133,6 +134,31 @@ public class BookRepositoryMySQL implements BookRepository{
         }
     }
 
+    public void updateBook(Long id, String titlu, String autor, LocalDate publishedDate, int cantitate, int pret) {
+        String sql = "UPDATE book " +
+                "SET " +
+                "    title = ?, " +
+                "    author = ?, " +
+                "    publishedDate = ?, " +
+                "    cantitate = ?, " +
+                "    pret = ? " +
+                "WHERE " +
+                "    id = ?";
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setString(1, titlu);
+            preparedStatement.setString(2, autor);
+            preparedStatement.setObject(3, publishedDate);
+            preparedStatement.setInt(4, cantitate);
+            preparedStatement.setInt(5, pret);
+            preparedStatement.setLong(6, id);
+
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     private Book getBookFromResultSet(ResultSet resultSet) throws SQLException{
         return new BookBuilder()
                 .setId(resultSet.getLong("id"))
@@ -144,5 +170,14 @@ public class BookRepositoryMySQL implements BookRepository{
                 .build();
     }
 
+    public void deleteById(Long id) {
+        String sql = "DELETE FROM book WHERE id = ?";
 
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setLong(1, id);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
