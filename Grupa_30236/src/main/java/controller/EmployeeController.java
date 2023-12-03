@@ -2,7 +2,6 @@ package controller;
 
 import database.DatabaseConnectionFactory;
 import javafx.event.ActionEvent;
-import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 import model.Book;
 import repository.book.BookRepository;
@@ -12,16 +11,17 @@ import repository.book.Cache;
 import view.*;
 
 import java.util.List;
-import java.util.function.Consumer;
 
 public class EmployeeController {
 
     private EmployeeView employeeView;
     private final BookRepository bookRepository;
+    private Long employeeID;
 
 
-    public EmployeeController(EmployeeView employeeView) {
+    public EmployeeController(EmployeeView employeeView, Long id) {
             this.employeeView = employeeView;
+            this.employeeID = id;
 
             // Add event handlers for buttons
             employeeView.addAddButtonListener(this::handleAddButton);
@@ -46,10 +46,8 @@ public class EmployeeController {
     }
 
     private void handleEditButton(ActionEvent event) {
-        // Implement edit operation
         UpdateBookView updateBookView = new UpdateBookView();
         UpdateBookController updateBookController = new UpdateBookController(updateBookView);
-//        showAlert("Edit Employee", "Edit operation not implemented yet.");
     }
 
     private void handleDeleteButton(ActionEvent event) {
@@ -60,7 +58,7 @@ public class EmployeeController {
 
     private void handleSellBookButton(ActionEvent event) {
         SellView sellView = new SellView();
-        SellController sellController = new SellController(sellView);
+        SellController sellController = new SellController(sellView, this.employeeID );
     }
 
     private void handleViewAllBooksButton(ActionEvent event) {

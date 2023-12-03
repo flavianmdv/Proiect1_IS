@@ -57,7 +57,7 @@ public class UpdateBookView {
 
         gridPane.add(updateButton, 0, 7, 2, 1);
 
-        Scene scene = new Scene(gridPane, 400, 350);  x
+        Scene scene = new Scene(gridPane, 400, 350);
         primaryStage.setScene(scene);
         primaryStage.setTitle("Update Book");
         primaryStage.show();

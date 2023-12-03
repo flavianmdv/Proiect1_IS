@@ -6,7 +6,6 @@ import javafx.event.EventHandler;
 import model.Role;
 import model.User;
 import model.validator.Notification;
-import model.validator.UserValidator;
 import repository.book.BookRepository;
 import repository.book.BookRepositoryCacheDecorator;
 import repository.book.BookRepositoryMySQL;
@@ -16,7 +15,6 @@ import view.CustomerView;
 import view.EmployeeView;
 import view.LoginView;
 
-import java.util.EventListener;
 import java.util.List;
 
 public class LoginController {
@@ -55,7 +53,7 @@ public class LoginController {
                 if (user_role.equals("customer")) {
                     CustomerController customerController = new CustomerController(new CustomerView(loginView.getStage()));
                 } else if (user_role.equals("employee")) {
-                    EmployeeController employeeController = new EmployeeController(new EmployeeView(loginView.getStage()));
+                    EmployeeController employeeController = new EmployeeController(new EmployeeView(loginView.getStage()), user_roles.get(0).getId());
 
                 }
             }

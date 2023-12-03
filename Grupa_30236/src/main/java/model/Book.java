@@ -72,7 +72,7 @@ import java.time.LocalDate;
 
         @Override
         public String toString(){
-            return String.format("Id: %d | Title: %s | Author: %s | Date: %s | Cantitate: %d | Pret: %d\n", this.id, this.title, this.author, this.publishedDate, this.cantitate, this.pret);
+            return String.format("Id: %d | Title: %s | Author: %s | Date: %s | Cantitate: %d | Pret: %d", this.id, this.title, this.author, this.publishedDate, this.cantitate, this.pret);
         }
     }
 
