@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import repository.security.RightsRolesRepositoryMySQL;
 import repository.user.UserRepository;
 import repository.user.UserRepositoryMySQL;
+import service.user.AuthenticationServiceMySQL;
 import view.admin.UpdateEmployeeView;
 
 import java.sql.Connection;
@@ -15,6 +16,9 @@ public class UpdateEmployeeController {
     private UpdateEmployeeView updateEmployeeView;
     private UserRepository userRepository;
 
+    private AuthenticationServiceMySQL authenticationService;
+
+
 
 
     public UpdateEmployeeController(UpdateEmployeeView updateEmployeeView) {
@@ -23,6 +27,9 @@ public class UpdateEmployeeController {
 
         this.rightsRolesRepository = new RightsRolesRepositoryMySQL(connection);
         this.userRepository = new UserRepositoryMySQL(connection, rightsRolesRepository);
+
+        this.authenticationService = new AuthenticationServiceMySQL(this.userRepository, this.rightsRolesRepository);
+
 
         updateEmployeeView.setUpdateButtonHandler(this::handleUpdateButton);
     }
@@ -41,7 +48,7 @@ public class UpdateEmployeeController {
             else
                 roleID = 3L;
         }
-        this.userRepository.updateEmployee(idEmployee,username,password,roleID);
+        this.userRepository.updateEmployee(idEmployee,username,roleID);
         this.updateEmployeeView.close();
 
     }

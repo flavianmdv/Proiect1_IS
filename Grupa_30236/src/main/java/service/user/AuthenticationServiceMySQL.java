@@ -61,7 +61,7 @@ public class AuthenticationServiceMySQL implements AuthenticationService {
         return false;
     }
 
-    private String hashPassword(String password) {
+    public String hashPassword(String password) {
         try {
             // Sercured Hash Algorithm - 256
             // 1 byte = 8 biți

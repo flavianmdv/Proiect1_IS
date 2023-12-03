@@ -49,7 +49,4 @@ public class AddBookController {
         addBookView.close();
     }
 
-    public void showView() {
-        addBookView.show();
-    }
 }

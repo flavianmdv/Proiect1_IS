@@ -34,15 +34,15 @@ public class AddEmployeeView {
 
         usernameTextField = new TextField();
         passwordField = new PasswordField();
-        rolesTextField = new TextField();  // Initialize rolesTextField
+        rolesTextField = new TextField();
         addButton = new Button("Add Employee");
 
         gridPane.add(new Label("Username:"), 0, 1);
         gridPane.add(usernameTextField, 1, 1);
         gridPane.add(new Label("Password:"), 0, 2);
         gridPane.add(passwordField, 1, 2);
-        gridPane.add(new Label("Roles (comma-separated):"), 0, 3);  // Label for roles
-        gridPane.add(rolesTextField, 1, 3);  // Add rolesTextField
+        gridPane.add(new Label("Roles (comma-separated):"), 0, 3);
+        gridPane.add(rolesTextField, 1, 3);
 
         gridPane.add(addButton, 0, 4, 2, 1);
 

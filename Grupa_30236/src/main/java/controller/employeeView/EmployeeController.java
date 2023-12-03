@@ -23,7 +23,6 @@ public class EmployeeController {
             this.employeeView = employeeView;
             this.employeeID = id;
 
-            // Add event handlers for buttons
             employeeView.addAddButtonListener(this::handleAddButton);
             employeeView.addEditButtonListener(this::handleEditButton);
             employeeView.addDeleteButtonListener(this::handleDeleteButton);
@@ -31,7 +30,6 @@ public class EmployeeController {
             employeeView.addSellBookButtonListener(this::handleSellBookButton);
             employeeView.addCloseButtonListener(this::handleCloseButton);
 
-            // Initialize the book repository
             this.bookRepository = new BookRepositoryCacheDecorator(
                     new BookRepositoryMySQL(DatabaseConnectionFactory.getConnectionWrapper(true).getConnection()),
                     new Cache<>()

@@ -133,30 +133,11 @@ public class UserRepositoryMySQL implements UserRepository {
         }
     }
 
-//    public void updateEmployee(Long id, String username, String password) {
-//        String sql = "UPDATE user " +
-//                "SET " +
-//                "    username = ?, " +
-//                "    password = ? " +
-//                "WHERE " +
-//                "    id = ?";
-//
-//        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-//            preparedStatement.setString(1, username);
-//            preparedStatement.setString(2, password);
-//            preparedStatement.setLong(3, id);
-//
-//            preparedStatement.executeUpdate();
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//    }
 
-    public void updateEmployee(Long id, String username, String password, Long roleId) {
+    public void updateEmployee(Long id, String username, Long roleId) {
         String updateUserSql = "UPDATE user " +
                 "SET " +
                 "    username = ?, " +
-                "    password = ? " +
                 "WHERE " +
                 "    id = ?";
 
@@ -172,23 +153,20 @@ public class UserRepositoryMySQL implements UserRepository {
             try (PreparedStatement updateUserStatement = connection.prepareStatement(updateUserSql);
                  PreparedStatement updateUserRoleStatement = connection.prepareStatement(updateUserRoleSql)) {
 
-                // Update user table
                 updateUserStatement.setString(1, username);
-                updateUserStatement.setString(2, password);
                 updateUserStatement.setLong(3, id);
                 updateUserStatement.executeUpdate();
 
-                // Update user_role table
                 updateUserRoleStatement.setLong(1, roleId);
                 updateUserRoleStatement.setLong(2, id);
                 updateUserRoleStatement.executeUpdate();
 
-                connection.commit(); // Commit the transaction
+                connection.commit();
             } catch (SQLException e) {
-                connection.rollback(); // Rollback the transaction in case of an exception
+                connection.rollback();
                 e.printStackTrace();
             } finally {
-                connection.setAutoCommit(true); // Reset auto-commit to true
+                connection.setAutoCommit(true);
             }
         } catch (SQLException e) {
             e.printStackTrace();

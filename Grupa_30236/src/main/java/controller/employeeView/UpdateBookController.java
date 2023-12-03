@@ -31,7 +31,6 @@ public class UpdateBookController {
     }
 
     private void handleUpdateButton(ActionEvent event) {
-        // Collect values from the view
         String id = updateBookView.getIdTextFieldText();
         String author = updateBookView.getAuthorTextFieldText();
         String title = updateBookView.getTitleTextFieldText();
