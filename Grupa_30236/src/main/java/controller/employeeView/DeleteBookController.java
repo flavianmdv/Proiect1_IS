@@ -1,4 +1,4 @@
-package controller;
+package controller.employeeView;
 
 import database.DatabaseConnectionFactory;
 import javafx.event.ActionEvent;
@@ -6,7 +6,7 @@ import repository.book.BookRepository;
 import repository.book.BookRepositoryCacheDecorator;
 import repository.book.BookRepositoryMySQL;
 import repository.book.Cache;
-import view.DeleteBookView;
+import view.employee.DeleteBookView;
 
 public class DeleteBookController {
 

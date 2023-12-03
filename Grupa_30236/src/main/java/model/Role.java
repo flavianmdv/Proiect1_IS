@@ -1,6 +1,7 @@
 package model;
 
-import java.util.*;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class Role {
     private Long id;
@@ -35,5 +36,9 @@ public class Role {
 
     public void setRights(List<Right> rights) {
         this.rights = rights;
+    }
+
+    public List<Right> collect() {
+        return rights.stream().collect(Collectors.toList());
     }
 }

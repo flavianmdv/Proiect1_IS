@@ -1,5 +1,8 @@
 package controller;
 
+import controller.adminController.AdminController;
+import controller.customer.CustomerController;
+import controller.employeeView.EmployeeController;
 import database.DatabaseConnectionFactory;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -11,9 +14,10 @@ import repository.book.BookRepositoryCacheDecorator;
 import repository.book.BookRepositoryMySQL;
 import repository.book.Cache;
 import service.user.AuthenticationService;
-import view.CustomerView;
-import view.EmployeeView;
+import view.admin.AdminView;
 import view.LoginView;
+import view.customer.CustomerView;
+import view.employee.EmployeeView;
 
 import java.util.List;
 
@@ -52,8 +56,13 @@ public class LoginController {
                 );
                 if (user_role.equals("customer")) {
                     CustomerController customerController = new CustomerController(new CustomerView(loginView.getStage()));
-                } else if (user_role.equals("employee")) {
+                }
+                if (user_role.equals("employee")) {
                     EmployeeController employeeController = new EmployeeController(new EmployeeView(loginView.getStage()), user_roles.get(0).getId());
+
+                }
+                if (user_role.equals("administrator")) {
+                    AdminController adminController = new AdminController(new AdminView(loginView.getStage()));
 
                 }
             }

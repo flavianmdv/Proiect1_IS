@@ -1,8 +1,7 @@
-package controller;
+package controller.customer;
 
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import view.CartView;
+import view.customer.CartView;
 
 public class CartController {
 

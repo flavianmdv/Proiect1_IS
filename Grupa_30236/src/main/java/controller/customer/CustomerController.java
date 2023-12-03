@@ -1,4 +1,4 @@
-package controller;
+package controller.customer;
 
 import database.DatabaseConnectionFactory;
 import javafx.event.ActionEvent;
@@ -8,8 +8,8 @@ import repository.book.BookRepository;
 import repository.book.BookRepositoryCacheDecorator;
 import repository.book.BookRepositoryMySQL;
 import repository.book.Cache;
-import view.CartView;
-import view.CustomerView;
+import view.customer.CartView;
+import view.customer.CustomerView;
 
 import java.util.List;
 

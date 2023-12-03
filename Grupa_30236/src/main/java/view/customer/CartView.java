@@ -1,4 +1,4 @@
-package view;
+package view.customer;
 
 import database.DatabaseConnectionFactory;
 import javafx.event.ActionEvent;

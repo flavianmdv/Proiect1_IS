@@ -1,4 +1,4 @@
-package view;
+package view.employee;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
