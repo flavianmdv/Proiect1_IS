@@ -137,7 +137,7 @@ public class UserRepositoryMySQL implements UserRepository {
     public void updateEmployee(Long id, String username, Long roleId) {
         String updateUserSql = "UPDATE user " +
                 "SET " +
-                "    username = ?, " +
+                "    username = ? " +
                 "WHERE " +
                 "    id = ?";
 
@@ -148,13 +148,13 @@ public class UserRepositoryMySQL implements UserRepository {
                 "    user_id = ?";
 
         try {
-            connection.setAutoCommit(false); // Start the transaction
+            connection.setAutoCommit(false);
 
             try (PreparedStatement updateUserStatement = connection.prepareStatement(updateUserSql);
                  PreparedStatement updateUserRoleStatement = connection.prepareStatement(updateUserRoleSql)) {
 
                 updateUserStatement.setString(1, username);
-                updateUserStatement.setLong(3, id);
+                updateUserStatement.setLong(2, id);
                 updateUserStatement.executeUpdate();
 
                 updateUserRoleStatement.setLong(1, roleId);
