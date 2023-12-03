@@ -68,6 +68,7 @@ public class SellController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        this.sellView.close();
     }
 
     private void createEmptyPDF() {
