@@ -1,4 +1,4 @@
-package view;
+package view.customer;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

@@ -1,4 +1,4 @@
-package view;
+package view.employee;
 
 import database.DatabaseConnectionFactory;
 import javafx.collections.FXCollections;

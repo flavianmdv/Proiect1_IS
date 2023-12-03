@@ -1,5 +1,7 @@
 package controller;
 
+import controller.customer.CustomerController;
+import controller.employeeView.EmployeeController;
 import database.DatabaseConnectionFactory;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -11,8 +13,8 @@ import repository.book.BookRepositoryCacheDecorator;
 import repository.book.BookRepositoryMySQL;
 import repository.book.Cache;
 import service.user.AuthenticationService;
-import view.CustomerView;
-import view.EmployeeView;
+import view.customer.CustomerView;
+import view.employee.EmployeeView;
 import view.LoginView;
 
 import java.util.List;

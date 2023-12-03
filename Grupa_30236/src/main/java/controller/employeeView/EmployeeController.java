@@ -1,4 +1,4 @@
-package controller;
+package controller.employeeView;
 
 import database.DatabaseConnectionFactory;
 import javafx.event.ActionEvent;
@@ -8,7 +8,7 @@ import repository.book.BookRepository;
 import repository.book.BookRepositoryCacheDecorator;
 import repository.book.BookRepositoryMySQL;
 import repository.book.Cache;
-import view.*;
+import view.employee.*;
 
 import java.util.List;
 

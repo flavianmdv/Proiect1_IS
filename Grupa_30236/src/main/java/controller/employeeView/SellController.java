@@ -1,4 +1,4 @@
-package controller;
+package controller.employeeView;
 
 import database.DatabaseConnectionFactory;
 import javafx.event.ActionEvent;
@@ -10,7 +10,7 @@ import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import repository.book.BookRepositoryCacheDecorator;
 import repository.book.BookRepositoryMySQL;
 import repository.book.Cache;
-import view.SellView;
+import view.employee.SellView;
 
 import java.io.File;
 import java.io.IOException;
