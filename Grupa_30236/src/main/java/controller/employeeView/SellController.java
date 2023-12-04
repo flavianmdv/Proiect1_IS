@@ -84,7 +84,7 @@ public class SellController {
     private void appendBookToPDF(Document document, Book book) {
         document.add(new Paragraph(book.toString()));
     }
-    
+
     private void appendSummaryToPDF(Document document, int totalPrice, Long employeeId) {
         document.add(new Paragraph("Total Price: " + totalPrice)
                 .setTextAlignment(TextAlignment.LEFT));
