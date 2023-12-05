@@ -39,11 +39,12 @@ public class AddEmployeeController {
         String password = addEmployeeView.getPasswordFieldText();
         List<Role> roles = addEmployeeView.getRolesTextFieldText();
         User user = new UserBuilder().setUsername(username).setPassword(password).setRoles(roles).build();
-        Notification<Boolean> registerNotification = authenticationService.register(username, password);
+        Notification<Boolean> registerNotification = authenticationService.registerEmployee(username, password);
 
 //        this.userRepository.save(user);
         addEmployeeView.close();
     }
-
-
 }
+
+
+
