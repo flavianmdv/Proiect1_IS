@@ -45,11 +45,16 @@ public class UserValidator {
         }
     }
 
+    public boolean validateEmployee() {
+        validateUsername(user.getUsername());
+
+        return errors.isEmpty();
+    }
+
     private boolean containsSpecialCharacter(String password){
         if (password == null || password.trim().isEmpty()){
             return false;
         }
-        // black list
         Pattern specialCharactersPattern = Pattern.compile("[^A-Za-z0-9]");
         Matcher specialCharactersMatcher = specialCharactersPattern.matcher(password);
 
